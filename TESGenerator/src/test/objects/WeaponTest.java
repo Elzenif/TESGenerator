@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import main.enums.WeaponType;
-import main.objects.Weapon;
+import main.items.Weapon;
 
 import org.junit.Test;
 

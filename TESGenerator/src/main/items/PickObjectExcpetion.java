@@ -1,4 +1,4 @@
-package main.objects;
+package main.items;
 
 public class PickObjectExcpetion extends Exception {
 

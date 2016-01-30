@@ -1,11 +1,9 @@
-package main.objects;
+package main.items;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import main.enums.WeaponType;
 import main.utils.Utils;
@@ -28,7 +26,13 @@ public class Weapon {
 	}
 	
 	private void initialize() {
-		type = this.pickRandomWeaponType();
+		try {
+			type = this.pickRandomWeaponType();
+		} catch (PickObjectExcpetion e) {
+		
+		} finally {
+			type = WeaponType.SWORD;
+		}
 		name = type.toString();
 	}
 	
@@ -36,7 +40,7 @@ public class Weapon {
 	 * Pick a random weapon type from the WeaponType enumeration
 	 * @return a random WeaponType
 	 */
-	private WeaponType pickRandomWeaponType() {
+	private WeaponType pickRandomWeaponType() throws PickObjectExcpetion {
 		WeaponType[] array = WeaponType.values();
 		Map<Integer, WeaponType> weaponTypes = new HashMap<Integer, WeaponType>();
 		for (int i = 0; i < array.length; i++) {			
@@ -55,6 +59,6 @@ public class Weapon {
 			}
 			it.remove();
 		}
-		return null;
+		throw new PickObjectExcpetion("WeaponType");
 	}
 }
