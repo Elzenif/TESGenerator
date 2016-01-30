@@ -1,4 +1,4 @@
-package test;
+package test.objects;
 
 import static org.junit.Assert.*;
 
@@ -31,11 +31,8 @@ public class WeaponTest {
 	public final void testWeaponTypeIsValid() {
 		Weapon weapon = new Weapon();
 		weapon.initialize();
-		Set<WeaponType> expected = new HashSet<WeaponType>(Arrays.asList(WeaponType.values()));
-		Set<WeaponType> actual = new HashSet<WeaponType>();
-		for (WeaponType wt : WeaponType.values()) {
-			actual.add(wt);
-		}
-		assertEquals(expected, actual);
+		Set<WeaponType> weaponTypes = new HashSet<WeaponType>(Arrays.asList(WeaponType.values()));
+		assertTrue("The weapon type should be be within the WeaponType enum", 
+				weaponTypes.contains(weapon.getType()));
 	}
 }
