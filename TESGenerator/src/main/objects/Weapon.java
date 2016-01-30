@@ -8,7 +8,7 @@ public class Weapon {
 	private WeaponType type;
 	
 	public Weapon() {
-		
+		this.initialize();
 	}
 	
 	public String getName() {
@@ -19,9 +19,8 @@ public class Weapon {
 		return type;
 	}
 	
-	public void initialize() {
+	private void initialize() {
 		name = "sword";
 		type = WeaponType.SWORD;
 	}
-
 }

@@ -1,6 +1,7 @@
 package test.enums;
 
 import static org.junit.Assert.*;
+
 import main.enums.WeaponType;
 
 import org.junit.Test;
@@ -22,4 +23,5 @@ public class WeaponTypeTest {
 					wt.getNbHands() == 1 || wt.getNbHands() == 2);
 		}
 	}
+
 }

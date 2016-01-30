@@ -16,23 +16,21 @@ public class WeaponTest {
 	@Test
 	public final void testWeaponNameisNotNull() {
 		Weapon weapon = new Weapon();
-		weapon.initialize();
 		assertNotNull("The weapon name should not be null", weapon.getName());
 	}
 
 	@Test
 	public final void testWeaponTypeIsNotNull() {
 		Weapon weapon = new Weapon();
-		weapon.initialize();
 		assertNotNull("The weapon type should not be null", weapon.getType());
 	}
 	
 	@Test
 	public final void testWeaponTypeIsValid() {
 		Weapon weapon = new Weapon();
-		weapon.initialize();
 		Set<WeaponType> weaponTypes = new HashSet<WeaponType>(Arrays.asList(WeaponType.values()));
 		assertTrue("The weapon type should be be within the WeaponType enum", 
 				weaponTypes.contains(weapon.getType()));
 	}
+	
 }
