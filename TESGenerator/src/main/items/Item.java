@@ -17,7 +17,18 @@ public class Item {
 		return name;
 	}
 
+	/**
+	 * Pick a random item from the array that fulfills the condition
+	 * @param array From which we pick an item
+	 * @param condition Condition on E
+	 * @return An item from the array that fulfills the condition
+	 */
 	protected <E extends Enum<E> & ItemType> Object pickRandomItemType(
+			E[] array, Predicate<E> condition) {
+		return this.pickRandomItemType(fillMap(array, condition));
+	}
+	
+	private <E extends Enum<E> & ItemType> Map<E, Integer> fillMap(
 			E[] array, Predicate<E> condition) {
 		Map<E, Integer> types = new HashMap<>();
 		for (int i = 0; i < array.length; i++) {
@@ -26,10 +37,10 @@ public class Item {
 				types.put(type, type.getProba());
 			}
 		}
-		return this.pickRandomItemType(types);
+		return types;
 	}
 	
-	protected <E extends Enum<E> & ItemType> Object pickRandomItemType(
+	private <E extends Enum<E> & ItemType> Object pickRandomItemType(
 			 Map<E, Integer> types) {
 		int probaMax = Utils.sum(types.values());
 		int rand = Utils.seed.nextInt(probaMax);
