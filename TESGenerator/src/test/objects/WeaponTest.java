@@ -32,4 +32,16 @@ public class WeaponTest {
 		assertTrue("The weapon type should be be within the WeaponType enum", 
 				weaponTypes.contains(weapon.getType()));
 	}
+	
+	@Test
+	public final void testOneHandWeaponInitialization() {
+		Weapon weapon = new Weapon(1);
+		assertEquals("The weapon should be one hand type", 1, weapon.getType().getNbHands());
+	}
+	
+	@Test
+	public final void testTwoHandsWeaponIntitialization() {
+		Weapon weapon = new Weapon(2);
+		assertEquals("The weapon should be one hand type", 2, weapon.getType().getNbHands());	
+	}
 }

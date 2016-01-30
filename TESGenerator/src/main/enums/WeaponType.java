@@ -9,7 +9,7 @@ public enum WeaponType {
 	DAGGER("dagger", 1),
 	KATANA("katana", 1),
 	MACE("mace", 1),
-	STAFF("staff", 1),
+	STAFF("staff", 2),
 	SWORD("sword", 1),
 	WAR_AXE("war axe", 1),
 	WARHAMMER("warhammer", 2);
