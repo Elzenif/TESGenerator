@@ -1,44 +1,28 @@
 package main.items;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.function.Predicate;
 
 import main.enums.WeaponType;
-import main.utils.Utils;
 
 public class Weapon extends Item {
 	
 	private WeaponType type;
 	
 	public Weapon() {
-		this.initialize();
+		this.initialize(wt -> true);
 	}
 	
 	public Weapon(int nbHands) {
-		this.initialize(nbHands);
+		this.initialize(wt -> wt.getNbHands() == nbHands);
 	}
 	
 	public WeaponType getType() {
 		return type;
 	}
 	
-	private void initialize() {
+	private void initialize(Predicate<WeaponType> condition) {
 		try {
-			type = this.pickRandomWeaponType();
-		} catch (PickObjectExcpetion e) {
-			e.printStackTrace();
-		} finally {
-			if (type == null)
-				type = WeaponType.SWORD;
-		}
-		name = type.toString();
-	}
-	
-	private void initialize(int nbHands) {
-		try {
-			type = this.pickRandomWeaponType(nbHands);
+			type = this.pickRandomWeaponType(condition);
 		} catch (PickObjectExcpetion e) {
 			e.printStackTrace();
 		} finally {
@@ -53,36 +37,13 @@ public class Weapon extends Item {
 	 * @return a random WeaponType
 	 * @throws PickObjectExcpetion
 	 */
-	private WeaponType pickRandomWeaponType() throws PickObjectExcpetion {
+	private WeaponType pickRandomWeaponType(Predicate<WeaponType> condition)
+			throws PickObjectExcpetion {
 		WeaponType[] array = WeaponType.values();
-		WeaponType wt = (WeaponType) super.pickRandomItemType(
-				array,
-				t -> true);
+		WeaponType wt = (WeaponType) super.pickRandomItemType(array, condition);
 		if (wt == null)
 			throw new PickObjectExcpetion(WeaponType.class.getName());
 		else
 			return wt;
-	}
-	
-	/**
-	 * Pick a random weapon type from the WeaponType enumeration
-	 * @param nbHands the nbHands we want the weapon to be
-	 * @return a random weapon of nbHands type
-	 * @throws PickObjectExcpetion
-	 */
-	private WeaponType pickRandomWeaponType(int nbHands) throws PickObjectExcpetion {
-		WeaponType[] array = WeaponType.values();
-		Map<WeaponType, Integer> weaponTypes = new HashMap<>();
-		for (int i = 0; i < array.length; i++) {
-			WeaponType wt = array[i];
-			if (wt.getNbHands() == nbHands)
-				weaponTypes.put(wt, wt.getProba());
-		}
-		WeaponType wt = (WeaponType) super.pickRandomItemType(weaponTypes);
-		if (wt == null)
-			throw new PickObjectExcpetion(WeaponType.class.getName());
-		else
-			return wt;
-	}
-	
+	}	
 }

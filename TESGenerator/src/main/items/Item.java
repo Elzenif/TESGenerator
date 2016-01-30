@@ -23,9 +23,7 @@ public class Item {
 		for (int i = 0; i < array.length; i++) {
 			E type = array[i];
 			if (condition.test(type)) {
-				Integer proba = 0;
-				proba = (Integer) type.getProba();
-				types.put(type, proba);
+				types.put(type, type.getProba());
 			}
 		}
 		return this.pickRandomItemType(types);
