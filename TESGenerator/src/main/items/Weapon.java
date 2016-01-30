@@ -28,7 +28,7 @@ public class Weapon extends Item {
 		try {
 			type = this.pickRandomWeaponType();
 		} catch (PickObjectExcpetion e) {
-		
+			e.printStackTrace();
 		} finally {
 			if (type == null)
 				type = WeaponType.SWORD;
@@ -40,7 +40,7 @@ public class Weapon extends Item {
 		try {
 			type = this.pickRandomWeaponType(nbHands);
 		} catch (PickObjectExcpetion e) {
-			
+			e.printStackTrace();
 		} finally {
 			if (type == null)
 				type = WeaponType.SWORD;
@@ -55,25 +55,11 @@ public class Weapon extends Item {
 	 */
 	private WeaponType pickRandomWeaponType() throws PickObjectExcpetion {
 		WeaponType[] array = WeaponType.values();
-		Map<WeaponType, Integer> weaponTypes = new HashMap<>();
-		for (int i = 0; i < array.length; i++) {
-			WeaponType wt = array[i];
-			weaponTypes.put(wt, wt.getProba());
-		}
-		int probaMax = Utils.sum(weaponTypes.values());
-		int rand = Utils.seed.nextInt(probaMax);
-		Iterator<Entry<WeaponType, Integer>> it = weaponTypes.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<WeaponType, Integer> pair = (Entry<WeaponType, Integer>) it.next();
-			int proba = pair.getValue();
-			if (rand < proba) {
-				return pair.getKey();
-			} else {
-				rand -= proba;
-			}
-			it.remove();
-		}
-		throw new PickObjectExcpetion(WeaponType.class.getName());
+		WeaponType wt = (WeaponType) super.pickRandomItemType(array);
+		if (wt == null)
+			throw new PickObjectExcpetion(WeaponType.class.getName());
+		else
+			return wt;
 	}
 	
 	/**
