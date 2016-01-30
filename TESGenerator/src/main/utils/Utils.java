@@ -1,10 +1,13 @@
 package main.utils;
 
+import java.security.SecureRandom;
 import java.util.Iterator;
 import java.util.Set;
 
 public class Utils {
 
+	public static SecureRandom seed = new SecureRandom();
+	
 	public static int sum(int[] array) {
 		int result = 0;
 		for (int i = 0; i < array.length; i++) {
