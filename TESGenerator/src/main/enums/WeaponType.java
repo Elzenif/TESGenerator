@@ -31,6 +31,10 @@ public enum WeaponType {
 	public int getNbHands() {
 		return nbHands;
 	}
+	
+	public int getProba() {
+		return proba;
+	}
 
 	public String toString() {
 		return name + " (" + nbHands + " hand(s))";

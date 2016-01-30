@@ -1,7 +1,6 @@
 package test.enums;
 
 import static org.junit.Assert.*;
-
 import main.enums.WeaponType;
 
 import org.junit.Test;
@@ -23,5 +22,12 @@ public class WeaponTypeTest {
 					wt.getNbHands() == 1 || wt.getNbHands() == 2);
 		}
 	}
+	
+	@Test
+	public final void testProbaIsValid() {
+		for (WeaponType wt : WeaponType.values()) {
+			assertTrue("The proba should be positive", wt.getProba() >= 0);
+		}
 
+	}
 }
