@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import main.enums.WeaponType;
+import main.items.Item;
 import main.items.Weapon;
 
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class WeaponTest {
 
 	@Test
 	public final void testWeaponNameisNotNull() {
-		Weapon weapon = new Weapon();
+		Item weapon = new Weapon();
 		assertNotNull("The weapon name should not be null", weapon.getName());
 	}
 

@@ -1,6 +1,6 @@
 package main.enums;
 
-public enum WeaponType {
+public enum WeaponType implements ItemType {
 	
 	BATTLE_AXE("battle axe", 2),
 	BOW("bow", 2),

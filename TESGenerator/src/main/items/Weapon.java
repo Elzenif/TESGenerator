@@ -8,9 +8,8 @@ import java.util.Map.Entry;
 import main.enums.WeaponType;
 import main.utils.Utils;
 
-public class Weapon {
+public class Weapon extends Item {
 	
-	private String name;
 	private WeaponType type;
 	
 	public Weapon() {
@@ -21,10 +20,6 @@ public class Weapon {
 		this.initialize(nbHands);
 	}
 	
-	public String getName() {
-		return name;
-	}
-
 	public WeaponType getType() {
 		return type;
 	}
@@ -78,7 +73,7 @@ public class Weapon {
 			}
 			it.remove();
 		}
-		throw new PickObjectExcpetion("WeaponType");
+		throw new PickObjectExcpetion(WeaponType.class.getName());
 	}
 	
 	/**
@@ -108,7 +103,7 @@ public class Weapon {
 			}
 			it.remove();
 		}
-		throw new PickObjectExcpetion("WeaponType");
+		throw new PickObjectExcpetion(WeaponType.class.getName());
 	}
 	
 }
