@@ -21,15 +21,8 @@ public class Weapon extends Item {
 	}
 	
 	private void initialize(Predicate<WeaponType> condition) {
-		try {
-			type = this.pickRandomWeaponType(condition);
-		} catch (PickObjectExcpetion e) {
-			e.printStackTrace();
-		} finally {
-			if (type == null)
-				type = WeaponType.SWORD;
-		}
-		name = type.toString();
+		setType(condition);
+		setName();
 	}
 	
 	/**
@@ -45,5 +38,23 @@ public class Weapon extends Item {
 			throw new PickObjectExcpetion(WeaponType.class.getName());
 		else
 			return wt;
-	}	
+	}
+	
+	/**
+	 * Requires type to be set
+	 */
+	private void setName() {
+		name = type.toString();
+	}
+	
+	private void setType(Predicate<WeaponType> condition) {
+		try {
+			type = this.pickRandomWeaponType(condition);
+		} catch (PickObjectExcpetion e) {
+			e.printStackTrace();
+		} finally {
+			if (type == null)
+				type = WeaponType.SWORD;
+		}		
+	}
 }
