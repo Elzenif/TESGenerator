@@ -13,7 +13,7 @@ public enum WeaponType {
 	SWORD("sword", 1),
 	WAR_AXE("war axe", 1),
 	WARHAMMER("warhammer", 2);
-
+	
 	private String name;
 	private int nbHands;
 	private int proba;
@@ -22,6 +22,11 @@ public enum WeaponType {
 		this.name = name;
 		this.nbHands = nbHands;
 		this.proba = 10;
+	}
+	
+	private WeaponType(String name, int nbHands, int proba) {
+		this(name, nbHands);
+		this.proba = proba;
 	}
 	
 	public String getName() {

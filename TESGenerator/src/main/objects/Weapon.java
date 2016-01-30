@@ -1,8 +1,10 @@
 package main.objects;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import main.enums.WeaponType;
@@ -35,19 +37,24 @@ public class Weapon {
 	 * @return a random WeaponType
 	 */
 	private WeaponType pickRandomWeaponType() {
-	/*	Map<Integer, WeaponType> weaponTypes = new HashMap<Integer, WeaponType>();
-		WeaponType wt;
-		Set<Integer> probas = weaponTypes.keySet();
-		int probaMax = Utils.sum(probas);
+		WeaponType[] array = WeaponType.values();
+		Map<Integer, WeaponType> weaponTypes = new HashMap<Integer, WeaponType>();
+		for (int i = 0; i < array.length; i++) {			
+			weaponTypes.put(array[i].getProba(), array[i]);
+		}
+		int probaMax = Utils.sum(weaponTypes.keySet());
 		int rand = Utils.seed.nextInt(probaMax);
-		Iterator it = probas.iterator();
+		Iterator<Entry<Integer, WeaponType>> it = weaponTypes.entrySet().iterator();
 		while (it.hasNext()) {
-			Map.Entry<Integer, WeaponType> pair = (Map.Entry) it.next();
-			if (rand < 10) {
-				
+			Map.Entry<Integer, WeaponType> pair = (Entry<Integer, WeaponType>) it.next();
+			int proba = pair.getKey();
+			if (rand < proba) {
+				return pair.getValue();
+			} else {
+				rand -= proba;
 			}
 			it.remove();
-		}*/
-		return WeaponType.BATTLE_AXE;
+		}
+		return null;
 	}
 }

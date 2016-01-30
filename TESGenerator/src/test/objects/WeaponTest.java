@@ -32,5 +32,4 @@ public class WeaponTest {
 		assertTrue("The weapon type should be be within the WeaponType enum", 
 				weaponTypes.contains(weapon.getType()));
 	}
-	
 }
