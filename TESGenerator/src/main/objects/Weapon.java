@@ -33,7 +33,7 @@ public class Weapon {
 	}
 	
 	/**
-	 * Pick a random weapon type from the WeaponType enum
+	 * Pick a random weapon type from the WeaponType enumeration
 	 * @return a random WeaponType
 	 */
 	private WeaponType pickRandomWeaponType() {
