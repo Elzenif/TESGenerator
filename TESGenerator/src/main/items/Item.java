@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Predicate;
 
 import main.enums.ItemType;
 import main.utils.Utils;
@@ -16,14 +17,22 @@ public class Item {
 		return name;
 	}
 
-	protected <E extends Enum<E> & ItemType> Object pickRandomItemType(E[] array) {
+	protected <E extends Enum<E> & ItemType> Object pickRandomItemType(
+			E[] array, Predicate<E> condition) {
 		Map<E, Integer> types = new HashMap<>();
 		for (int i = 0; i < array.length; i++) {
 			E type = array[i];
-			Integer proba = 0;
-			proba = (Integer) type.getProba();
-			types.put(type, proba);
+			if (condition.test(type)) {
+				Integer proba = 0;
+				proba = (Integer) type.getProba();
+				types.put(type, proba);
+			}
 		}
+		return this.pickRandomItemType(types);
+	}
+	
+	protected <E extends Enum<E> & ItemType> Object pickRandomItemType(
+			 Map<E, Integer> types) {
 		int probaMax = Utils.sum(types.values());
 		int rand = Utils.seed.nextInt(probaMax);
 		Iterator<Entry<E, Integer>> it = types.entrySet().iterator();
