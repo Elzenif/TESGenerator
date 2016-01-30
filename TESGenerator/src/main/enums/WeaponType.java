@@ -16,10 +16,12 @@ public enum WeaponType {
 
 	private String name;
 	private int nbHands;
+	private int proba;
 	
 	private WeaponType(String name, int nbHands) {
 		this.name = name;
 		this.nbHands = nbHands;
+		this.proba = 10;
 	}
 	
 	public String getName() {
