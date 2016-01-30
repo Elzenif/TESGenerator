@@ -2,7 +2,9 @@ package test.utils;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,5 +25,12 @@ public class UtilsTest {
 		Integer[] array = {1,3,15,2,9};
 		Set<Integer> set = new HashSet<Integer>(Arrays.asList(array));
 		assertEquals("The result is incorrect", 30, Utils.sum(set));
+	}
+	
+	@Test
+	public void testSumCollection() {
+		Integer[] array = {1,3,15,2,9};
+		Collection<Integer> collec = new ArrayList<Integer>(Arrays.asList(array));
+		assertEquals("The result is incorrect", 30, Utils.sum(collec));	
 	}
 }
