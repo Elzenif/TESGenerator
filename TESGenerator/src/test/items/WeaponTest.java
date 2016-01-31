@@ -30,7 +30,7 @@ public class WeaponTest {
 	public final void testWeaponTypeIsValid() {
 		Weapon weapon = new Weapon();
 		Set<WeaponType> weaponTypes = new HashSet<WeaponType>(Arrays.asList(WeaponType.values()));
-		assertTrue("The weapon type should be be within the WeaponType enum", 
+		assertTrue("The weapon type should be a WeaponType enum", 
 				weaponTypes.contains(weapon.getType()));
 	}
 	
@@ -44,5 +44,12 @@ public class WeaponTest {
 	public final void testTwoHandsWeaponIntitialization() {
 		Weapon weapon = new Weapon(2);
 		assertEquals("The weapon should be one hand type", 2, weapon.getType().getNbHands());	
+	}
+	
+	@Test
+	public final void testWeaponToStringIsNotNull() {
+		Weapon weapon = new Weapon();
+		String s = weapon.toString();
+		assertNotNull("The toString method should not return null", s);
 	}
 }
