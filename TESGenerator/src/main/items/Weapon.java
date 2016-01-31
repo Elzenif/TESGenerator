@@ -57,4 +57,10 @@ public class Weapon extends Item {
 				type = WeaponType.SWORD;
 		}		
 	}
+	
+	@Override
+	public String toString() {
+		
+		return "";
+	}
 }

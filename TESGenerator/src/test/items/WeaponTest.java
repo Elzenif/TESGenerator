@@ -30,20 +30,20 @@ public class WeaponTest {
 	public final void testWeaponTypeIsValid() {
 		Weapon weapon = new Weapon();
 		Set<WeaponType> weaponTypes = new HashSet<WeaponType>(Arrays.asList(WeaponType.values()));
-		assertTrue("The weapon type should be a WeaponType enum", 
+		assertTrue("The weapon type should be a WeaponType enum : " + weapon.getType().toString(), 
 				weaponTypes.contains(weapon.getType()));
 	}
 	
 	@Test
 	public final void testOneHandWeaponInitialization() {
 		Weapon weapon = new Weapon(1);
-		assertEquals("The weapon should be one hand type", 1, weapon.getType().getNbHands());
+		assertEquals("The weapon should be one hand type : " + weapon.toString(), 1, weapon.getType().getNbHands());
 	}
 	
 	@Test
 	public final void testTwoHandsWeaponIntitialization() {
 		Weapon weapon = new Weapon(2);
-		assertEquals("The weapon should be one hand type", 2, weapon.getType().getNbHands());	
+		assertEquals("The weapon should be one hand type : " + weapon.toString(), 2, weapon.getType().getNbHands());	
 	}
 	
 	@Test
@@ -51,5 +51,12 @@ public class WeaponTest {
 		Weapon weapon = new Weapon();
 		String s = weapon.toString();
 		assertNotNull("The toString method should not return null", s);
+	}
+	
+	@Test
+	public final void testWeaponToStringIsValid() {
+		Weapon weapon = new Weapon();
+		String s = weapon.toString();
+		assertFalse("The toString method should be overridden : " + s, s.contains("@"));
 	}
 }
