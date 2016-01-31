@@ -1,4 +1,4 @@
-package test.objects;
+package test.items;
 
 import static org.junit.Assert.*;
 
