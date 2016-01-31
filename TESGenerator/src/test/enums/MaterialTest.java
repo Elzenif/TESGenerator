@@ -2,7 +2,6 @@ package test.enums;
 
 import static org.junit.Assert.*;
 import main.enums.Material;
-import main.enums.WeaponType;
 
 import org.junit.Test;
 

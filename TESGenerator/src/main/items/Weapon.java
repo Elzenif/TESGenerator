@@ -11,10 +11,12 @@ public class Weapon extends Item {
 	private Material material;
 	
 	public Weapon() {
+		super();
 		this.initialize(wt -> true, m -> true);
 	}
 	
 	public Weapon(int nbHands) {
+		super();
 		this.initialize(
 				wt -> wt.getNbHands() == nbHands, 
 				m -> true);
