@@ -10,23 +10,21 @@ public class Weapon extends Item {
 	private WeaponType weaponType;
 	private Material material;
 	
-	public Weapon() {
-		super();
-		this.initialize(wt -> true, m -> true);
+	public static Weapon createWeaponWithoutConstraints() {
+		Weapon weapon = new Weapon();
+		weapon.initialize(wt -> true, p -> true);
+		return weapon;
 	}
 	
-	public Weapon(int nbHands) {
-		super();
-		this.initialize(
-				wt -> wt.getNbHands() == nbHands, 
-				m -> true);
+	public static Weapon createWeaponWithXHands(int nbHands) {
+		Weapon weapon = new Weapon();
+		weapon.initialize(wt -> wt.getNbHands() == nbHands, p -> true);
+		return weapon;
 	}
-	/*
-	public Weapon(int material) {
-		this.initialize(
-				wt -> true, 
-				m -> true);
-	}*/
+	
+	protected Weapon() {
+		super();
+	}
 	
 	public Material getMaterial() {
 		return material;

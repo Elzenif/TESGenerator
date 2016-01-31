@@ -13,6 +13,10 @@ public abstract class Item {
 
 	protected String name;
 	
+	protected Item() {
+		
+	}
+	
 	public String getName() {
 		return name;
 	}

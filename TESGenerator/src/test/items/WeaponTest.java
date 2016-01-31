@@ -19,21 +19,23 @@ public class WeaponTest {
 	
 	@Before
 	public final void constructWeapon() {
-		weapon = new Weapon();
 	}
 
 	@Test
 	public final void testWeaponNameIsNotNull() {
+		weapon = Weapon.createWeaponWithoutConstraints();
 		assertNotNull("The weapon name should not be null", weapon.getName());
 	}
 
 	@Test
 	public final void testWeaponTypeIsNotNull() {
+		weapon = Weapon.createWeaponWithoutConstraints();
 		assertNotNull("The weapon type should not be null", weapon.getType());
 	}
 	
 	@Test
 	public final void testWeaponTypeIsValid() {
+		weapon = Weapon.createWeaponWithoutConstraints();
 		Set<WeaponType> weaponTypes = new HashSet<WeaponType>(
 				Arrays.asList(WeaponType.values()));
 		assertTrue("The weapon type should be a WeaponType enum : "
@@ -43,26 +45,28 @@ public class WeaponTest {
 	
 	@Test
 	public final void testOneHandWeaponInitialization() {
-		Weapon weapon = new Weapon(1);
+		weapon = Weapon.createWeaponWithXHands(1);
 		assertEquals("The weapon should be one hand type : " + weapon.toString(),
 				1, weapon.getType().getNbHands());
 	}
 	
 	@Test
 	public final void testTwoHandsWeaponIntitialization() {
-		Weapon weapon = new Weapon(2);
+		weapon = Weapon.createWeaponWithXHands(2);
 		assertEquals("The weapon should be one hand type : " + weapon.toString(),
 				2, weapon.getType().getNbHands());	
 	}
 	
 	@Test
 	public final void testWeaponToStringIsNotNull() {
+		weapon = Weapon.createWeaponWithoutConstraints();
 		assertNotNull("The toString method should not return null",
 				weapon.toString());
 	}
 	
 	@Test
 	public final void testWeaponToStringIsValid() {
+		weapon = Weapon.createWeaponWithoutConstraints();
 		String s = weapon.toString();
 		System.out.println("Generating weapon : " + s);
 		assertFalse("The toString method should be overridden : " + s,
@@ -71,12 +75,14 @@ public class WeaponTest {
 	
 	@Test
 	public final void testWeaponMaterialIsNotNull() {
+		weapon = Weapon.createWeaponWithoutConstraints();
 		assertNotNull("The weapon material should not be null",
 				weapon.getMaterial());
 	}
 	
 	@Test
 	public final void testWeaponMaterialIsValid() {
+		weapon = Weapon.createWeaponWithoutConstraints();
 		Set<Material> materials = new HashSet<Material>(
 				Arrays.asList(Material.values()));
 		assertTrue("The material should be a Material enum : "
