@@ -42,6 +42,9 @@ public enum WeaponType implements ItemType {
 	}
 
 	public String toString() {
-		return name + " (" + nbHands + " hand(s))";
+		String pluralFrom = "";
+		if (nbHands == 2)
+			pluralFrom = "s";
+		return name + " (" + nbHands + " hand" + pluralFrom + ")";
 	}
 }

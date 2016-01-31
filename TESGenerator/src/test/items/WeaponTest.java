@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import main.enums.WeaponType;
-import main.items.Item;
 import main.items.Weapon;
 
 import org.junit.Test;
@@ -15,8 +14,8 @@ import org.junit.Test;
 public class WeaponTest {
 
 	@Test
-	public final void testWeaponNameisNotNull() {
-		Item weapon = new Weapon();
+	public final void testWeaponNameIsNotNull() {
+		Weapon weapon = new Weapon();
 		assertNotNull("The weapon name should not be null", weapon.getName());
 	}
 
@@ -57,6 +56,7 @@ public class WeaponTest {
 	public final void testWeaponToStringIsValid() {
 		Weapon weapon = new Weapon();
 		String s = weapon.toString();
+		System.out.println(s);
 		assertFalse("The toString method should be overridden : " + s, s.contains("@"));
 	}
 }

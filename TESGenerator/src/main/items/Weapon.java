@@ -6,7 +6,7 @@ import main.enums.WeaponType;
 
 public class Weapon extends Item {
 	
-	private WeaponType type;
+	private WeaponType weaponType;
 	
 	public Weapon() {
 		this.initialize(wt -> true);
@@ -17,7 +17,7 @@ public class Weapon extends Item {
 	}
 	
 	public WeaponType getType() {
-		return type;
+		return weaponType;
 	}
 	
 	private void initialize(Predicate<WeaponType> condition) {
@@ -41,26 +41,25 @@ public class Weapon extends Item {
 	}
 	
 	/**
-	 * Requires type to be set
+	 * Requires weaponType to be set
 	 */
 	private void setName() {
-		name = type.toString();
+		name = weaponType.toString();
 	}
 	
 	private void setType(Predicate<WeaponType> condition) {
 		try {
-			type = this.pickRandomWeaponType(condition);
+			weaponType = this.pickRandomWeaponType(condition);
 		} catch (PickObjectExcpetion e) {
 			e.printStackTrace();
 		} finally {
-			if (type == null)
-				type = WeaponType.SWORD;
+			if (weaponType == null)
+				weaponType = WeaponType.SWORD;
 		}		
 	}
 	
 	@Override
 	public String toString() {
-		
-		return "";
+		return super.toString();
 	}
 }
