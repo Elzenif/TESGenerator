@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import main.enums.ItemType;
 import main.utils.Utils;
 
-public class Item {
+public abstract class Item {
 
 	protected String name;
 	
