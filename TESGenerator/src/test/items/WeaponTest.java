@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import main.enums.Material;
 import main.enums.WeaponType;
 import main.items.Weapon;
 
@@ -33,34 +34,54 @@ public class WeaponTest {
 	
 	@Test
 	public final void testWeaponTypeIsValid() {
-		Set<WeaponType> weaponTypes = new HashSet<WeaponType>(Arrays.asList(WeaponType.values()));
-		assertTrue("The weapon type should be a WeaponType enum : " + weapon.getType().toString(), 
+		Set<WeaponType> weaponTypes = new HashSet<WeaponType>(
+				Arrays.asList(WeaponType.values()));
+		assertTrue("The weapon type should be a WeaponType enum : "
+				+ weapon.getType().toString(), 
 				weaponTypes.contains(weapon.getType()));
 	}
 	
 	@Test
 	public final void testOneHandWeaponInitialization() {
 		Weapon weapon = new Weapon(1);
-		assertEquals("The weapon should be one hand type : " + weapon.toString(), 1, weapon.getType().getNbHands());
+		assertEquals("The weapon should be one hand type : " + weapon.toString(),
+				1, weapon.getType().getNbHands());
 	}
 	
 	@Test
 	public final void testTwoHandsWeaponIntitialization() {
 		Weapon weapon = new Weapon(2);
-		assertEquals("The weapon should be one hand type : " + weapon.toString(), 2, weapon.getType().getNbHands());	
+		assertEquals("The weapon should be one hand type : " + weapon.toString(),
+				2, weapon.getType().getNbHands());	
 	}
 	
 	@Test
 	public final void testWeaponToStringIsNotNull() {
-		String s = weapon.toString();
-		assertNotNull("The toString method should not return null", s);
+		assertNotNull("The toString method should not return null",
+				weapon.toString());
 	}
 	
 	@Test
 	public final void testWeaponToStringIsValid() {
 		String s = weapon.toString();
-		System.out.println(s);
-		assertFalse("The toString method should be overridden : " + s, s.contains("@"));
+		System.out.println("Generating weapon : " + s);
+		assertFalse("The toString method should be overridden : " + s,
+				s.contains("@"));
+	}
+	
+	@Test
+	public final void testWeaponMaterialIsNotNull() {
+		assertNotNull("The weapon material should not be null",
+				weapon.getMaterial());
+	}
+	
+	@Test
+	public final void testWeaponMaterialIsValid() {
+		Set<Material> materials = new HashSet<Material>(
+				Arrays.asList(Material.values()));
+		assertTrue("The material should be a Material enum : "
+				+ weapon.getMaterial().toString(),
+				materials.contains(weapon.getMaterial()));
 	}
 
 }

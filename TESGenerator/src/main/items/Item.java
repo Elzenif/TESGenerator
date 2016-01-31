@@ -12,7 +12,7 @@ import main.utils.Utils;
 public class Item {
 
 	protected String name;
-
+	
 	public String getName() {
 		return name;
 	}

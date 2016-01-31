@@ -28,6 +28,5 @@ public class WeaponTypeTest {
 		for (WeaponType wt : WeaponType.values()) {
 			assertTrue("The proba should be positive", wt.getProba() >= 0);
 		}
-
 	}
 }
