@@ -12,6 +12,7 @@ public class MaterialCondition extends AbstractCondition {
 		this.condition = condition;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Predicate getCondition() {
 		return condition;
