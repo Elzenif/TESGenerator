@@ -2,6 +2,10 @@ package main.items;
 
 import java.util.function.Predicate;
 
+import main.conditions.ConditionID;
+import main.conditions.ConditionList;
+import main.conditions.MaterialCondition;
+import main.conditions.WeaponTypeCondition;
 import main.enums.Material;
 import main.enums.WeaponType;
 
@@ -12,13 +16,19 @@ public class Weapon extends Item {
 	
 	public static Weapon createWeaponWithoutConstraints() {
 		Weapon weapon = new Weapon();
-		weapon.initialize(wt -> true, p -> true);
+		ConditionList conditionList = new ConditionList();
+		conditionList.add(new WeaponTypeCondition(wt -> true));
+		conditionList.add(new MaterialCondition(m -> true));
+		weapon.initialize(conditionList);
 		return weapon;
 	}
 	
 	public static Weapon createWeaponWithXHands(int nbHands) {
 		Weapon weapon = new Weapon();
-		weapon.initialize(wt -> wt.getNbHands() == nbHands, p -> true);
+		ConditionList conditionList = new ConditionList();
+		conditionList.add(new WeaponTypeCondition(wt -> wt.getNbHands() == nbHands));
+		conditionList.add(new MaterialCondition(m -> true));
+		weapon.initialize(conditionList);
 		return weapon;
 	}
 	
@@ -34,10 +44,10 @@ public class Weapon extends Item {
 		return weaponType;
 	}
 	
-	private void initialize(Predicate<WeaponType> weaponTypeCondition, 
-			Predicate<Material> materialCondition) {
-		setType(weaponTypeCondition);
-		setMaterial(materialCondition);
+	@SuppressWarnings("unchecked")
+	private void initialize(ConditionList conditionList) {
+		setType(conditionList.remove(ConditionID.WEAPON_TYPE).getCondition());
+		setMaterial(conditionList.remove(ConditionID.MATERIAL).getCondition());
 		setName();
 	}
 	
