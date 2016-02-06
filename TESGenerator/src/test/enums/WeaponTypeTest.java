@@ -1,6 +1,7 @@
 package test.enums;
 
 import static org.junit.Assert.*;
+import main.enums.ItemType;
 import main.enums.WeaponType;
 
 import org.junit.Test;
@@ -28,5 +29,11 @@ public class WeaponTypeTest {
 		for (WeaponType wt : WeaponType.values()) {
 			assertTrue("The proba should be positive", wt.getProba() >= 0);
 		}
+	}
+	
+	@Test
+	public final void testGetDefaultIsDefault() {
+		assertEquals("The weapon type default value should be DEFAULT",
+				WeaponType.DEFAULT, ItemType.getDefault(WeaponType.class));
 	}
 }

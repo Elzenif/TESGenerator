@@ -12,7 +12,8 @@ public enum WeaponType implements ItemType {
 	STAFF("staff", 2),
 	SWORD("sword", 1),
 	WAR_AXE("war axe", 1),
-	WARHAMMER("warhammer", 2);
+	WARHAMMER("warhammer", 2),
+	DEFAULT("default", 1, 0);
 	
 	private String name;
 	private int nbHands;

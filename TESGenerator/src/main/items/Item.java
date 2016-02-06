@@ -27,9 +27,10 @@ public abstract class Item {
 	 * @param condition Condition on E
 	 * @return An item from the array that fulfills the condition
 	 */
-	protected <E extends Enum<E> & ItemType> Object pickRandomItemType(
+	@SuppressWarnings("unchecked")
+	protected <E extends Enum<E> & ItemType> E pickRandomItemType(
 			E[] array, Predicate<E> condition) {
-		return this.pickRandomItemType(fillMap(array, condition));
+		return (E) this.pickRandomItemType(fillMap(array, condition));
 	}
 	
 	private <E extends Enum<E> & ItemType> Map<E, Integer> fillMap(

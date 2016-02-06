@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import main.conditions.ConditionList;
 import main.conditions.GenericCondition;
+import main.enums.ItemType;
 import main.enums.Material;
 import main.enums.WeaponType;
 
@@ -49,57 +50,52 @@ public class Weapon extends Item {
 		setMaterial(conditionList.remove(Material.class).getPredicate());
 		setName();
 	}
-	
-	/**
-	 * Pick a random weapon type from the WeaponType enumeration
-	 * @return a random WeaponType
-	 * @throws PickObjectExcpetion
-	 */
-	private WeaponType pickRandomWeaponType(Predicate<WeaponType> condition)
-			throws PickObjectExcpetion {
-		WeaponType wt = (WeaponType) pickRandomItemType(WeaponType.values(), condition);
-		if (wt == null)
-			throw new PickObjectExcpetion(WeaponType.class.getName());
-		else
-			return wt;
-	}
-	
-	private Material pickRandomMaterialType(Predicate<Material> condition) 
-			throws PickObjectExcpetion {
-		Material m = (Material) pickRandomItemType(Material.values(), condition);
-		if (m == null) 
-			throw new PickObjectExcpetion(Material.class.getName());
-		else
-			return m;			
-	}
-	
-	private void setMaterial(Predicate<Material> predicate) {
-		try {
-			material = pickRandomMaterialType(predicate);
-		} catch (PickObjectExcpetion e) {
-			e.printStackTrace();
-		} finally {
-			if (material == null) 
-				material = Material.IRON;
-		}
-	}
-	
+
 	/**
 	 * Requires weaponType to be set
 	 */
 	private void setName() {
 		name = weaponType.toString();
 	}
+		
+	private void setMaterial(Predicate<Material> predicate) {
+		material = setItemType(Material.values(), predicate, Material.class);
+	}
 	
 	private void setWeaponType(Predicate<WeaponType> predicate) {
+		weaponType = setItemType(WeaponType.values(), predicate, WeaponType.class);
+	}
+	
+	private <E extends Enum<E> & ItemType> E setItemType(
+			E[] values, Predicate<E> predicate, Class<E> enumClass) {
+		E itemType = null;
 		try {
-			weaponType = pickRandomWeaponType(predicate);
-		} catch (PickObjectExcpetion e) {
+			itemType = pickRandomItemType(values, predicate, enumClass.getName());
+		} catch (PickObjectException e) {
 			e.printStackTrace();
 		} finally {
-			if (weaponType == null)
-				weaponType = WeaponType.SWORD;
-		}		
+			if (itemType == null)
+				return ItemType.getDefault(enumClass);
+		}
+		return itemType;
+	}
+	
+	/**
+ 	 * Pick a random itemType from the values array
+	 * @param values The array containing the enum values from which we pick the item
+	 * @param predicate The predicate that keep only some values to pick
+	 * @param enumName The name of the Enum of the itemType
+	 * @return a randomly picked itemType
+	 * @throws PickObjectException
+	 */
+	private <E extends Enum<E> & ItemType> E pickRandomItemType(
+			E[] values, Predicate<E> predicate, String enumName)
+			throws PickObjectException {
+		E itemType = pickRandomItemType(values, predicate);
+		if (itemType == null)
+			throw new PickObjectException(enumName);
+		else
+			return itemType;
 	}
 	
 	@Override

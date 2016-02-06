@@ -4,7 +4,8 @@ public enum Material implements ItemType {
 	
 	DRAGON_BONES("dragon bones", 1),
 	IRON("iron"),
-	STEEL("steel");
+	STEEL("steel"),
+	DEFAULT("default", 0);
 
 	private String name;
 	private int proba;
