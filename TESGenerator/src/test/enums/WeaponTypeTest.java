@@ -19,8 +19,10 @@ public class WeaponTypeTest {
 	@Test
 	public final void testOneOrTwoHand() {
 		for (WeaponType wt : WeaponType.values()) {
-			assertTrue("The weapon type should be one or two hands", 
-					wt.getNbHands() == 1 || wt.getNbHands() == 2);
+			if (wt.getProba() > 0) {
+				assertTrue("The weapon type should be one or two hands", 
+						wt.getNbHands() == 1 || wt.getNbHands() == 2);
+			}
 		}
 	}
 	
