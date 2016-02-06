@@ -11,13 +11,13 @@ import org.junit.Test;
 public class ConditionListTest {
 
 	@Test
-	public void testGetListIsNotNull() {
+	public final void testGetListIsNotNull() {
 		ConditionList conditionList = new ConditionList();
 		assertNotNull("The conditionList should not be null", conditionList);
 	}
 
 	@Test
-	public void testConditionListSize() {
+	public final void testConditionListSize() {
 		ConditionList conditionList = new ConditionList();
 		GenericCondition<WeaponType> wtCondition =
 				new GenericCondition<WeaponType>(WeaponType.class);
@@ -31,7 +31,7 @@ public class ConditionListTest {
 	}
 	
 	@Test
-	public void testAddCondition() {
+	public final void testAddCondition() {
 		ConditionList conditionList = new ConditionList();
 		GenericCondition<WeaponType> wtCondition =
 				new GenericCondition<WeaponType>(WeaponType.class);
@@ -41,7 +41,7 @@ public class ConditionListTest {
 	}
 	
 	@Test
-	public void testRemoveCondition() {
+	public final void testRemoveCondition() {
 		ConditionList conditionList = new ConditionList();
 		GenericCondition<WeaponType> wtCondition =
 				new GenericCondition<WeaponType>(WeaponType.class);

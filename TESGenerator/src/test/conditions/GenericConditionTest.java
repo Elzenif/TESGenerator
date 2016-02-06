@@ -9,7 +9,7 @@ import org.junit.Test;
 public class GenericConditionTest {
 
 	@Test
-	public void testGetConditionIsNotNull() {
+	public final void testGetConditionIsNotNull() {
 		GenericCondition<WeaponType> condition = 
 				new GenericCondition<WeaponType>(WeaponType.class);
 		assertNotNull("The condition predicate should not be null", 
