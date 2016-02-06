@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import main.enums.ItemType;
+
 public class ConditionList {
 
 	private Set<AbstractCondition> list;
@@ -23,12 +25,12 @@ public class ConditionList {
 	public boolean contains(AbstractCondition condition) {
 		return list.contains(condition);
 	}
-
-	public AbstractCondition remove(ConditionID conditionID) {
+	
+	public <E extends Enum<E> & ItemType> AbstractCondition remove(Class<E> type) {
 		Iterator<AbstractCondition> it = list.iterator();
 		while (it.hasNext()) {
 			AbstractCondition currentCondition = it.next();
-			if (currentCondition.getConditionID() == conditionID) {
+			if (currentCondition.getPredicateType() == type) {
 				list.remove(currentCondition);
 				return currentCondition;
 			}

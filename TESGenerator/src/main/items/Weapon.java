@@ -2,10 +2,8 @@ package main.items;
 
 import java.util.function.Predicate;
 
-import main.conditions.ConditionID;
 import main.conditions.ConditionList;
-import main.conditions.MaterialCondition;
-import main.conditions.WeaponTypeCondition;
+import main.conditions.GenericCondition;
 import main.enums.Material;
 import main.enums.WeaponType;
 
@@ -17,8 +15,8 @@ public class Weapon extends Item {
 	public static Weapon createWeaponWithoutConstraints() {
 		Weapon weapon = new Weapon();
 		ConditionList conditionList = new ConditionList();
-		conditionList.add(new WeaponTypeCondition(wt -> true));
-		conditionList.add(new MaterialCondition(m -> true));
+		conditionList.add(new GenericCondition<WeaponType>(WeaponType.class));
+		conditionList.add(new GenericCondition<Material>(Material.class));
 		weapon.initialize(conditionList);
 		return weapon;
 	}
@@ -26,8 +24,9 @@ public class Weapon extends Item {
 	public static Weapon createWeaponWithXHands(int nbHands) {
 		Weapon weapon = new Weapon();
 		ConditionList conditionList = new ConditionList();
-		conditionList.add(new WeaponTypeCondition(wt -> wt.getNbHands() == nbHands));
-		conditionList.add(new MaterialCondition(m -> true));
+		conditionList.add(new GenericCondition<WeaponType>(WeaponType.class,
+				wt -> wt.getNbHands() == nbHands));
+		conditionList.add(new GenericCondition<Material>(Material.class));
 		weapon.initialize(conditionList);
 		return weapon;
 	}
@@ -46,8 +45,8 @@ public class Weapon extends Item {
 	
 	@SuppressWarnings("unchecked")
 	private void initialize(ConditionList conditionList) {
-		setType(conditionList.remove(ConditionID.WEAPON_TYPE).getCondition());
-		setMaterial(conditionList.remove(ConditionID.MATERIAL).getCondition());
+		setWeaponType(conditionList.remove(WeaponType.class).getPredicate());
+		setMaterial(conditionList.remove(Material.class).getPredicate());
 		setName();
 	}
 	
@@ -74,9 +73,9 @@ public class Weapon extends Item {
 			return m;			
 	}
 	
-	private void setMaterial(Predicate<Material> condition) {
+	private void setMaterial(Predicate<Material> predicate) {
 		try {
-			material = pickRandomMaterialType(condition);
+			material = pickRandomMaterialType(predicate);
 		} catch (PickObjectExcpetion e) {
 			e.printStackTrace();
 		} finally {
@@ -92,9 +91,9 @@ public class Weapon extends Item {
 		name = weaponType.toString();
 	}
 	
-	private void setType(Predicate<WeaponType> condition) {
+	private void setWeaponType(Predicate<WeaponType> predicate) {
 		try {
-			weaponType = pickRandomWeaponType(condition);
+			weaponType = pickRandomWeaponType(predicate);
 		} catch (PickObjectExcpetion e) {
 			e.printStackTrace();
 		} finally {
