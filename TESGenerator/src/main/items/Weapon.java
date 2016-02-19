@@ -4,7 +4,6 @@ import java.util.function.Predicate;
 
 import main.conditions.ConditionList;
 import main.conditions.GenericCondition;
-import main.enums.ItemType;
 import main.enums.Material;
 import main.enums.WeaponType;
 
@@ -44,7 +43,6 @@ public class Weapon extends Item {
 		return weaponType;
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void initialize(ConditionList conditionList) {
 		setWeaponType(conditionList.remove(WeaponType.class).getPredicate());
 		setMaterial(conditionList.remove(Material.class).getPredicate());

@@ -6,8 +6,7 @@ import main.enums.ItemType;
 
 public abstract class AbstractCondition {
 
-	@SuppressWarnings("rawtypes")
-	public abstract Predicate getPredicate();
+	public abstract <E extends Enum<E> & ItemType> Predicate<E> getPredicate();
 		
 	public abstract <E extends Enum<E> & ItemType> Class<E> getPredicateType();
 }

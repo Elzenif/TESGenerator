@@ -19,6 +19,7 @@ public class GenericCondition<E extends Enum<E> & ItemType> extends AbstractCond
 		this.predicate = predicate;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Predicate<E> getPredicate() {
 		return predicate;
