@@ -1,14 +1,14 @@
 package main.conditions;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 import main.enums.ItemType;
 
 public class ConditionList {
 
-	private Set<AbstractCondition> list;
+	private Collection<AbstractCondition> list;
 	
 	public ConditionList() {
 		this.list = new HashSet<AbstractCondition>();
