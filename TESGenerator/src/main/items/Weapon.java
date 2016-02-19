@@ -32,7 +32,7 @@ public class Weapon extends Item {
 		return weapon;
 	}
 	
-	protected Weapon() {
+	private Weapon() {
 		super();
 	}
 	
@@ -64,38 +64,6 @@ public class Weapon extends Item {
 	
 	private void setWeaponType(Predicate<WeaponType> predicate) {
 		weaponType = setItemType(WeaponType.values(), predicate, WeaponType.class);
-	}
-	
-	private <E extends Enum<E> & ItemType> E setItemType(
-			E[] values, Predicate<E> predicate, Class<E> enumClass) {
-		E itemType = null;
-		try {
-			itemType = pickRandomItemType(values, predicate, enumClass.getName());
-		} catch (PickObjectException e) {
-			e.printStackTrace();
-		} finally {
-			if (itemType == null)
-				return ItemType.getDefault(enumClass);
-		}
-		return itemType;
-	}
-	
-	/**
- 	 * Pick a random itemType from the values array
-	 * @param values The array containing the enum values from which we pick the item
-	 * @param predicate The predicate that keep only some values to pick
-	 * @param enumName The name of the Enum of the itemType
-	 * @return a randomly picked itemType
-	 * @throws PickObjectException
-	 */
-	private <E extends Enum<E> & ItemType> E pickRandomItemType(
-			E[] values, Predicate<E> predicate, String enumName)
-			throws PickObjectException {
-		E itemType = pickRandomItemType(values, predicate);
-		if (itemType == null)
-			throw new PickObjectException(enumName);
-		else
-			return itemType;
 	}
 	
 	@Override

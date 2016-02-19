@@ -27,10 +27,9 @@ public abstract class Item {
 	 * @param condition Condition on E
 	 * @return An item from the array that fulfills the condition
 	 */
-	@SuppressWarnings("unchecked")
 	protected <E extends Enum<E> & ItemType> E pickRandomItemType(
 			E[] array, Predicate<E> condition) {
-		return (E) this.pickRandomItemType(fillMap(array, condition));
+		return this.pickRandomItemType(fillMap(array, condition));
 	}
 	
 	private <E extends Enum<E> & ItemType> Map<E, Integer> fillMap(
@@ -45,7 +44,7 @@ public abstract class Item {
 		return types;
 	}
 	
-	private <E extends Enum<E> & ItemType> Object pickRandomItemType(
+	private <E extends Enum<E> & ItemType> E pickRandomItemType(
 			 Map<E, Integer> types) {
 		int probaMax = Utils.sum(types.values());
 		int rand = Utils.seed.nextInt(probaMax);
@@ -61,6 +60,38 @@ public abstract class Item {
 			it.remove();
 		}
 		return null;
+	}
+	
+	protected <E extends Enum<E> & ItemType> E setItemType(
+			E[] values, Predicate<E> predicate, Class<E> enumClass) {
+		E itemType = null;
+		try {
+			itemType = pickRandomItemType(values, predicate, enumClass.getName());
+		} catch (PickObjectException e) {
+			e.printStackTrace();
+		} finally {
+			if (itemType == null)
+				return ItemType.getDefault(enumClass);
+		}
+		return itemType;
+	}
+	
+	/**
+ 	 * Pick a random itemType from the values array
+	 * @param values The array containing the enum values from which we pick the item
+	 * @param predicate The predicate that keep only some values to pick
+	 * @param enumName The name of the Enum of the itemType
+	 * @return a randomly picked itemType
+	 * @throws PickObjectException
+	 */
+	protected <E extends Enum<E> & ItemType> E pickRandomItemType(
+			E[] values, Predicate<E> predicate, String enumName)
+			throws PickObjectException {
+		E itemType = pickRandomItemType(values, predicate);
+		if (itemType == null)
+			throw new PickObjectException(enumName);
+		else
+			return itemType;
 	}
 	
 	@Override
