@@ -52,10 +52,10 @@ public class Weapon extends Item {
 	}
 
 	/**
-	 * Requires weaponType to be set
+	 * Requires weaponType and material to be set
 	 */
 	private void setName() {
-		name = weaponType.toString();
+		name = weaponType.toString() + " " + material.getName();
 	}
 		
 	private void setMaterial(Predicate<Material> predicate) {
@@ -68,6 +68,6 @@ public class Weapon extends Item {
 	
 	@Override
 	public String toString() {
-		return super.toString() + " " + material.getName();
+		return super.toString();
 	}
 }

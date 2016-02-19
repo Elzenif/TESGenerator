@@ -16,4 +16,7 @@ public enum NbHands {
 		return value;
 	}
 
+	public String toString() {
+		return Integer.toString(value);
+	}
 }
