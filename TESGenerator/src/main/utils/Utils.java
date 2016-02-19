@@ -16,15 +16,6 @@ public class Utils {
 		}
 		return result;
 	}
-	
-	public static int sum(Set<Integer> set) {
-		int result = 0;
-		Iterator<Integer> it = set.iterator();
-		while(it.hasNext()) {
-			result += it.next();
-		}
-		return result;
-	}
 
 	public static int sum(Collection<Integer> collec) {
 		int result = 0;

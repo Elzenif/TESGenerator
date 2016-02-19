@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import main.utils.Utils;
 
@@ -18,13 +16,6 @@ public class UtilsTest {
 	public void testSumArray() {
 		int[] array = {1,3,15,2,9};
 		assertEquals("The result is incorrect", 30, Utils.sum(array));
-	}
-
-	@Test
-	public void testSumSet() {
-		Integer[] array = {1,3,15,2,9};
-		Set<Integer> set = new HashSet<Integer>(Arrays.asList(array));
-		assertEquals("The result is incorrect", 30, Utils.sum(set));
 	}
 	
 	@Test
